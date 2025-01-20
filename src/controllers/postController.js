@@ -94,7 +94,7 @@ class PostController{
 
         try{
             // acesso no banco pelo mongoose, acessando o modelo usando o find pata pegar os titutlos
-            const postPorTitulo = await post.find({titulo: titulo})
+            const postPorTitulo = await post.find({titulo: { $regex: '.*' + titulo + '.*' }})
             res.status(200).json(postPorTitulo)
 
         } catch(erro)
