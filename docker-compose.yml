@@ -8,6 +8,9 @@ services:
       - "3000:3000"
     environment:
       - MONGO_URI=mongodb://db:27017/blogging-app
+    command: ["node", "server.js"]
+    volumes:
+      - .:/app
     depends_on:
       - db
 

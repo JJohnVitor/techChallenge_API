@@ -20,5 +20,5 @@ ENV PORT=3000
 EXPOSE 3000
 
 # Comando para iniciar o servidor
-CMD ["node", "src/index.js"]
+CMD ["node", "server.js"]
 

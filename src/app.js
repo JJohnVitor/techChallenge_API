@@ -1,27 +1,21 @@
 import express from "express";
-import conectaNaDataBase from "./config/dbconnect.js";
 import routes from "./routes/index.js";
-
-// variavel para trabalhar com os metodos da conexao
-const conexao = await conectaNaDataBase()
-
-//  evento de erro, para imprimir o erro da conexão
-conexao.on("error", (erro)=>{
-    console.error("Erro de conexão", erro)
-})
-
-// conexao aberta
-conexao.once("open", ()=>{
-    console.log("Conexao com o banco feita com sucesso")
-
-})
+import conectaNaDataBase from "./config/dbconnect.js";
 
 // funcionalidades de express em app
 const app = express()
-
 routes(app)
 
+// porta de acesso
+const PORT = 3000
 
+// se o ambiente não for de teste, conecta no banco de dados
+if (process.env.NODE_ENV !== 'test') {
+    conectaNaDataBase().then(() => {
+        console.log("Conectado com sucesso no MongoDB")
+    }).catch((erro) => {
+        console.log(`Erro ao conectar ao banco de dados: ${erro.message}`)
+    })
+}
 
-// exportando para server. js e colocando no liste
 export default app
