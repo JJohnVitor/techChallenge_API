@@ -58,7 +58,7 @@ class PostController{
         // o metodo findByIdAndUpdate ira no atlas e procurar os dados atras do modelo e atualizar atraves do req.body
         await post.findByIdAndUpdate(id, req.body)
         //fonte de dados "post"
-        res.status(200).json({message: "Livro atualizado"})
+        res.status(200).json({message: "Livro atualizado com sucesso"})
 
         }catch(erro){
             res.status(500).json({message:`${erro.message}- falha na atualização`})
